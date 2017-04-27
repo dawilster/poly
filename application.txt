@@ -1,0 +1,17 @@
+
+Universal chat app. 'Poly' (like polyglot) seamlessly translates text messages in real time between people each speaking different languages. We want to enable individuals and groups to be able to communicate and collaborate regardless of their language and proficiency.
+
+Inefficiency to collaborate when some or all members aren't proficient in the same language.
+
+A feeling of connectedness to the world. There's a level of isolation when the only people you can properly communicate with have to speak the same language as you.
+
+Existing technology just doesn't cut it. Apps like Messenger, WhatsApp and Slack chat don't offer translation driven experiences. Rather it's an after thought. Users have to leave the app or copy/paste words into Google.
+
+As a broad scope we'd like to see everyone using Poly in some form.
+Whether it's with in the co-workers, customers, exchange students on projects or even your grandparents who can't quite speak English we want to be there driving that experience.
+
+
+We want to share our software with the world. Poly will be available to all developers and online communities. With a few clicks you'll be able to embed chat capabilities powered by Poly to your website or community. We can can then charge monthly subscriptions for our services.
+
+At the moment costs are $50 per month. With my development experience and design savviness I'll be able to deploy a working prototype for next to nothing. 
+Obviously that's going to change. I envision hiring people to fulfill and accelerate future development but I believe minimalism to keep costs low and investing sweat equity where I can.

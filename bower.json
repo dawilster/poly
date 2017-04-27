@@ -1,0 +1,17 @@
+{
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6",
+    "mustache.js": "mustache#^2.3.0"
+  },
+  "name": "chat-app",
+  "version": "0.0.0",
+  "author": "william",
+  "private": true
+}

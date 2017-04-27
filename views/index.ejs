@@ -1,0 +1,200 @@
+<div class="master-container container-fluid no-padding">
+  <div class="row">
+    <div class="col-lg-3 no-padding">
+      <div class="chat-sidebar card purple">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-1">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+            </div>
+            <div class="col-10">
+              Poly
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="channel-list sidebar-list">
+            <li>
+              <span class="channel-name">Random</span>
+              <span class="channel-active"><em><span id="random-active">0</span> active</em></span>
+            </li>
+            <li>
+              <select class="languages-select form-control">
+                <option value="">Detecting Language</option>
+              </select>
+            </li>
+            <li>
+              <span class="active-icon"></span>
+              Live Language Stats
+            </li>
+          </ul>
+          <ul class="live-stats sidebar-list">
+            <div class="loading-indicator">
+              <img src="images/light-loading-ring.svg" width="40" height="40"/>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 no-padding">
+      <div class="chat-window card purple">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-10">Random</div>
+            <div class="col-2 text-right"><small>v0.0.1</small></div>
+          </div>
+        </div>
+
+        <div id="messages-scrollable" class="scrollable">
+          <div class="card-block">
+            <div class="row">
+              <div class="messages loading-indicator">
+                <img src="images/loading-ring.svg" width="50" height="50"/>
+              </div>
+
+              <div class="chat-messages"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="compose-message">
+              <form action="">
+                <div class="row">
+                  <div class="form-group col-12">
+                    <!-- <textarea id="m" placeholder="Send a message" name="m" rows="8" cols="80" class="form-control"></textarea> -->
+                    <input id="m" autocomplete="off" placeholder="Send a message" class="form-control"/>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type='hidden' id="received-welcome" value='false' />
+<input type='hidden' id="current-language" value='en' />
+<input type='hidden' id="username" value='' />
+<input type='hidden' id="active-count" value='en' />
+
+<script id="welcome-message" type="x-tmpl-mustache">
+<div class="col-12">
+  <div class="chat-message">
+    <div class="row">
+      <div class="col-2 col-sm-1 text-center">
+        <div class="profile-picture">
+          <span class="short-name">W</span>
+        </div>
+      </div>
+      <div class="col-10 col-sm-11">
+        <div class="message-body">
+          {{#translate}}
+            <span class="info rate-btn hide">Rate</span>
+          {{/translate}}
+          <div class="translated-text">
+            {{translatedText}}
+          </div>
+          <div class="original-text hide">
+            {{originalText}}
+          </div>
+          {{#translate}}
+            <div class="action-buttons">
+              <span class="info original-language">Translated from English</span>
+              <span class="info see-original"><span>Hover for Original</span></span>
+            </div>
+          {{/translate}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="chat-message" type="x-tmpl-mustache">
+  <div class="col-12">
+    <div class="chat-message">
+      <div class="row">
+        <div class="col-2 col-sm-1 text-center">
+          <div class="profile-picture text-center">
+            <div class="short-name">{{shortName}}</div>
+          </div>
+        </div>
+        <div class="col-10 col-sm-11">
+          <div class="message-body">
+            {{#translate}}
+              <span class="info rate-btn hide">Rate</span>
+            {{/translate}}
+            <div class="translated-text">{{body.translatedText}}</div>
+            <div class="original-text hide">{{body.originalText}}</div>
+            {{#translate}}
+              <div class="action-buttons">
+                <span class="info original-language">Translated from {{originalLanguage}}</span>
+                <span class="info see-original"><span>Hover for Original</span></span>
+              </div>
+            {{/translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="joined-message" type="x-tmpl-mustache">
+  <div class="col-12">
+    <div class="chat-message">
+      <div class="row">
+        <div class="col-2 col-sm-1 text-center">
+          <div class="profile-picture">
+            <div class="short-name">{{shortName}}</div>
+          </div>
+        </div>
+        <div class="col-10 col-sm-11">
+          <div class="message-body">
+            {{name}} has joined Random.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="left-message" type="x-tmpl-mustache">
+  <div class="col-12">
+    <div class="chat-message">
+      <div class="row">
+        <div class="col-2 col-sm-1 text-center">
+          <div class="profile-picture">
+            <div class="short-name">{{name}}</div>
+          </div>
+        </div>
+        <div class="col-10 col-sm-11">
+          <div class="message-body">
+            {{name}} has left Random.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="language-select" type="x-tmpl-mustache">
+  {{#languages}}
+    <option value="{{code}}" data-code="{{code}}">{{name}}</option>
+  {{/languages}}
+</script>
+
+<script id="chat-message-yourself" type="x-tmpl-mustache">
+  <div class="col-12">
+    <div class="chat-message yourself">
+      <div class="message-body">
+        {{body}}
+      </div>
+    </div>
+  </div>
+</script>
